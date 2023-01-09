@@ -12,14 +12,12 @@ function ReactUniversalServerLoader(source, map) {
 function createServerCode({ importPath, id }) {
   return `|import Component from './${importPath}'
           |import assignStatics from 'hoist-non-react-statics'
-          |import { render as renderToString } from 'preact-render-to-string'
-          |import { h } from 'preact'
-          |/** @jsx h */
+          |import { render } from 'preact-render-to-string'
           |
           |assignStatics(WrapWithScript, Component)
           |
           |export default function WrapWithScript({ universalContainerProps, ...props }) {
-          |  const content = renderToString(<Component {...props} />)
+          |  const content = render(<Component {...props} />)
           |  return (
           |    <div {...universalContainerProps} data-componentid='${id}' data-props={JSON.stringify(props)} dangerouslySetInnerHTML={{ __html: content }} />
           |  )

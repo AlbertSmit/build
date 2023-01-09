@@ -1,10 +1,7 @@
-const renderToString = require('preact-render-to-string')
-// const ReactDOMServer = require('react-dom/server')
-const { isElement } = require('react-dom/test-utils')
+const render = require('preact-render-to-string')
+const React = require('preact/compat')
 
 module.exports = function htmlReactRenderer(template) {
-  // if (!isElement(template)) return template
-  // return '<!DOCTYPE html>\n' + ReactDOMServer.renderToStaticMarkup(template)
-
-  return '<!DOCTYPE html>\n' + renderToString(template)
+  if (!React.isValidElement(template)) return template
+  return '<!DOCTYPE html>\n' + render(template)
 }

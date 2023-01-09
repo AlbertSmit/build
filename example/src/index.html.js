@@ -18,6 +18,7 @@ import '/test.entry.css'
 import { FunctionComponent, FunctionComponentContainer } from './test/FunctionComponent'
 import FunctionComponentC from './test/FunctionComponent.universal'
 import FunctionComponentU from '/test/FunctionComponentApp?universal'
+import Animation from '/Animation/Animation.universal'
 
 main.routes = {
   match: ({ pathname }, request) =>
@@ -48,6 +49,7 @@ main.routes = {
 
 export default function main({ location, data }) {
   if (!data) return null
+
   return (
     <html lang='en'>
       {head('Rendered on server')}
@@ -64,6 +66,7 @@ export default function main({ location, data }) {
         </p>
         <SharedComponent />
         <SharedComponentC />
+        <Animation />
         <span className={styles.test}>Something</span>
         <h1>1.</h1>
         <Test2 name="1" />

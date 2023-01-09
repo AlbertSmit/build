@@ -46,7 +46,7 @@ export function hydrate(
   },
 ) {
   // Move the rendered nodes to a container before hydrating
-  nodes.forEach((x) => { container.appendChild(x) })
+  nodes?.forEach((x) => { container.appendChild(x) })
 
   hydrateFn(component, container)
 

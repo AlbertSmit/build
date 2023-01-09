@@ -31,9 +31,7 @@ function createServerCode({
 
   return `|import Component from './${importPath}?original'
           |import assignStatics from 'hoist-non-react-statics'
-          |import { render as renderToString } from 'preact-render-to-string'
-          |import { h } from 'preact'
-          |/** @jsx h */
+          |import { render } from 'preact-render-to-string'
           |
           |import { ComponentServerWrapper } from '@kaliber/build/lib/universalComponents'
           |${server.wrapper}
@@ -48,7 +46,7 @@ function createServerCode({
           |function PropsWrapper({ serverProps, ...additionalProps }) {
           |  const componentName = '${id}'
           |  const props = { ...additionalProps, ...serverProps }
-          |  const renderedComponent = renderToString(${client.wrapped})
+          |  const renderedComponent = render(${client.wrapped})
           |  return <ComponentServerWrapper {...{ componentName, props, renderedComponent }} />
           |}
           |`.replace(/^[\s]*\|/mg, '')

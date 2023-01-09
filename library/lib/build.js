@@ -378,6 +378,7 @@ module.exports = function build({ watch }) {
         }),
         new webpack.ProvidePlugin({
           React: 'preact/compat',
+          react: 'preact/compat',
           Component: ['preact', 'Component'],
           h: ['preact', 'h'],
           cx: 'classnames',

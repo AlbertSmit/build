@@ -1,4 +1,4 @@
-declare const React: typeof import('react')
+declare const React: typeof import('preact/compat')
 declare const cx: typeof import('classnames')
 
 declare module '*.css' {
