@@ -27,7 +27,7 @@ export default class Test extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <img src={img} />
         <Sticky>
           <p>I am compiled with babel!</p>
@@ -46,7 +46,7 @@ export default class Test extends Component {
         <br />
         <p>Client config:</p>
         <pre>{JSON.stringify(this.props.clientConfig, null, 2)}</pre>
-      </>
+      </React.Fragment>
     )
   }
 
@@ -89,8 +89,8 @@ function getDecorator() {
 }
 
 function Hooks({ foo }) {
-  useEffect(() => {
-    console.log(foo)
-  }, [])
+  // useEffect(() => {
+  //   console.log(foo)
+  // }, [])
   return null
 }

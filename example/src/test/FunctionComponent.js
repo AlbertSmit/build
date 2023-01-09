@@ -26,7 +26,7 @@ export function FunctionComponent({ prop1, prop2 }) {
   )
 
   return (
-    <>
+    <React.Fragment>
       <h1>Function component</h1>
       <p>{prop1} / {prop2}</p>
       <p>first {counter}</p>
@@ -45,7 +45,7 @@ export function FunctionComponent({ prop1, prop2 }) {
           click - {clickCounter}
         </button>
       </p>
-    </>
+    </React.Fragment>
   )
 }
 

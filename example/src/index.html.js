@@ -21,29 +21,30 @@ import FunctionComponentU from '/test/FunctionComponentApp?universal'
 
 main.routes = {
   match: ({ pathname }, request) =>
-    pathname === '/' ? getMessage().then(message => ({ status: 200, data: { message, hostname: request.hostname } })) :
+    // pathname === '/' ? getMessage().then(message => ({ status: 200, data: { message, hostname: request.hostname } })) :
+    pathname === '/' ? { status: 200, data: { message: 'Hey!', hostname: request.hostname } } :
     pathname === '/error' ? Promise.reject(new Error('fake error')) :
     pathname === '/redirect' ? { status: 302, headers: { 'Location': '/redirect-target' } } :
     { status: 404, data: { message: 'missing' } }
 }
 
-function getMessage() {
-  return getApp().database().ref('read-only').child('message').once('value').then(snap => snap.val())
+// function getMessage() {
+//   return getApp().database().ref('read-only').child('message').once('value').then(snap => snap.val())
 
-  function getApp() {
-    const name = 'build-example-app'
-    try { return firebase.app(name) } catch (e) {
-      const { credentials, databaseURL } = config.server.firebase
-      return firebase.initializeApp(
-        {
-          credential: firebase.credential.cert(credentials),
-          databaseURL
-        },
-        name
-      )
-    }
-  }
-}
+//   function getApp() {
+//     const name = 'build-example-app'
+//     try { return firebase.app(name) } catch (e) {
+//       const { credentials, databaseURL } = config.server.firebase
+//       return firebase.initializeApp(
+//         {
+//           credential: firebase.credential.cert(credentials),
+//           databaseURL
+//         },
+//         name
+//       )
+//     }
+//   }
+// }
 
 export default function main({ location, data }) {
   if (!data) return null

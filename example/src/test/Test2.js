@@ -39,9 +39,9 @@ function WebWorker() {
   )
 
   return (
-    <>
+    <React.Fragment>
       <p>From worker: {fromWorker}</p>
       <button type='button' onClick={e => console.log('posting') || worker.postMessage('from button')}>click</button>
-    </>
+    </React.Fragment>
   )
 }
