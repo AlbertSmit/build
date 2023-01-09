@@ -31,7 +31,10 @@ function createServerCode({
 
   return `|import Component from './${importPath}?original'
           |import assignStatics from 'hoist-non-react-statics'
-          |import { renderToString } from 'react-dom/server'
+          |import { render as renderToString } from 'preact-render-to-string'
+          |import { h } from 'preact'
+          |/** @jsx h */
+          |
           |import { ComponentServerWrapper } from '@kaliber/build/lib/universalComponents'
           |${server.wrapper}
           |${client.wrapper}

@@ -14,7 +14,7 @@ function ReactUniversalClientLoader(source, map, meta) {
 
 function createClientCode({ importPath, id }) {
   return `|import Component from './${importPath}'
-          |import { hydrate } from 'react-dom'
+          |import { hydrate } from 'preact'
           |
           |const elements = document.querySelectorAll('*[data-componentid="${id}"]')
           |for (let i = 0; i < elements.length; i++) {

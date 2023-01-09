@@ -12,7 +12,9 @@ function ReactUniversalServerLoader(source, map) {
 function createServerCode({ importPath, id }) {
   return `|import Component from './${importPath}'
           |import assignStatics from 'hoist-non-react-statics'
-          |import { renderToString } from 'react-dom/server'
+          |import { render as renderToString } from 'preact-render-to-string'
+          |import { h } from 'preact'
+          |/** @jsx h */
           |
           |assignStatics(WrapWithScript, Component)
           |

@@ -13,9 +13,12 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "paths": {
       "/*?universal": ["src/*"],
-      "/*": ["src/*"]
+      "/*": ["src/*"],
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
     },
     "downlevelIteration": true
   }

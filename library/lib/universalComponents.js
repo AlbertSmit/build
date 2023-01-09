@@ -1,4 +1,4 @@
-import ReactDom from 'react-dom'
+import { hydrate as hydrateFn } from 'preact'
 import { safeJsonStringify } from '@kaliber/safe-json-stringify'
 
 const containerMarker = 'data-kaliber-component-container'
@@ -6,7 +6,7 @@ const containerMarker = 'data-kaliber-component-container'
 export function ComponentServerWrapper({ componentName, props, renderedComponent }) {
   const componentInfo = JSON.stringify({ componentName, props })
   return (
-    <>
+    <React.Fragment>
       {/* It is not possible to render the html of a React-rendered component without a container
           because dangerouslySetInnerHTML is the only route to get raw html into the resulting html */}
       <kaliber-component-container dangerouslySetInnerHTML={{ __html: renderedComponent }} />
@@ -16,7 +16,7 @@ export function ComponentServerWrapper({ componentName, props, renderedComponent
       <script dangerouslySetInnerHTML={{
         __html: restructureDomNodes(componentInfo).replace(/<\/?script>/gi, '')
       }} />
-    </>
+    </React.Fragment>
   )
 }
 
@@ -48,7 +48,7 @@ export function hydrate(
   // Move the rendered nodes to a container before hydrating
   nodes.forEach((x) => { container.appendChild(x) })
 
-  ReactDom.hydrate(component, container)
+  hydrateFn(component, container)
 
   // Capture the rendered nodes before they are moved by inserting the container
   const renderedNodes = Array.from(container.childNodes)

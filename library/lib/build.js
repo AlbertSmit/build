@@ -70,6 +70,10 @@ const babelLoader = {
     babelrc: false, // this needs to be false, any other value will cause .babelrc to interfere with these settings
     presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
     plugins: [
+      ['@babel/plugin-transform-react-jsx', {
+        'pragma': 'h',
+        'pragmaFrag': 'Fragment',
+      }],
       '@babel/syntax-dynamic-import',
       '@babel/syntax-optional-chaining',
       ['@babel/proposal-decorators', { legacy: true }],
@@ -259,6 +263,12 @@ module.exports = function build({ watch }) {
       modules: ['node_modules'],
       plugins: [absolutePathResolverPlugin(srcDir), fragmentResolverPlugin()],
       symlinks,
+      alias: {
+        'react': 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',     // Must be below test-utils
+        'react/jsx-runtime': 'preact/jsx-runtime'
+      }
     }
   }
 
@@ -367,8 +377,9 @@ module.exports = function build({ watch }) {
           'process.env.WATCH': watch
         }),
         new webpack.ProvidePlugin({
-          React: 'react',
-          Component: ['react', 'Component'],
+          React: 'preact/compat',
+          Component: ['preact', 'Component'],
+          h: ['preact', 'h'],
           cx: 'classnames',
         }),
         sourceMapPlugin({ sourceRoot: cwd }),
