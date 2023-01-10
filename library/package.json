@@ -78,8 +78,6 @@
     "postcss-values-parser": "^4.0.0",
     "progress-bar-webpack-plugin": "^2.1.0",
     "raw-loader": "^4.0.1",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
     "rollbar": "^2.19.3",
     "stylelint": "^13.7.1",
     "stylelint-use-nesting": "^3.0.0",
@@ -93,7 +91,15 @@
     "webpack-node-externals": "^2.5.2",
     "ws": "^7.3.1",
     "preact": "^10.11.3",
-    "preact-render-to-string": "^5.2.6"
+    "preact-render-to-string": "^5.2.6",
+    "react": "npm:@preact/compat@17.1.2",
+    "react-dom": "npm:@preact/compat@17.1.2"
+  },
+  "peerDependencies": {
+    "preact": "^10.11.3",
+    "preact-render-to-string": "^5.2.6",
+    "react": "npm:@preact/compat@17.1.2",
+    "react-dom": "npm:@preact/compat@17.1.2"
   },
   "keywords": [
     "webpack",
